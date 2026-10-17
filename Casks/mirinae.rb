@@ -1,8 +1,8 @@
-# Installs the prebuilt release. The binary is ad-hoc signed, not notarised, so macOS
-# asks for confirmation on first launch unless the user installs with --no-quarantine.
+# Installs the prebuilt release. The binary is ad hoc signed, not notarised, so macOS asks
+# for confirmation on first launch unless the user installs with --no-quarantine.
 cask "mirinae" do
-  version "0.1.0"
-  sha256 "7236018eb6d2c547c0fb41d822ba6d6e622dcb7edfc225611550688d17375382"
+  version "0.1.1"
+  sha256 "4c76ed1b7f8c472a675b9bba5f9cbbc3ed625a59048253d7ac0e7c4fdc7543e7"
 
   url "https://github.com/agriyakhetarpal/mirinae/releases/download/v#{version}/Mirinae-#{version}.zip"
   name "Mirinae"
