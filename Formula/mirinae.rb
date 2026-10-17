@@ -11,6 +11,9 @@ class Mirinae < Formula
   depends_on macos: :sonoma
 
   def install
+    # SwiftPM sandboxes manifest compilation, and that cannot nest inside Homebrew's sandbox.
+    # 0.1.0 predates the SWIFT_BUILD_FLAGS passthrough in the build script, so patch it in.
+    inreplace "Scripts/build-app.sh", "swift build ", "swift build --disable-sandbox "
     system "Scripts/build-app.sh", "release"
     prefix.install "build/Mirinae.app"
     bin.write_exec_script prefix/"Mirinae.app/Contents/MacOS/Mirinae"
@@ -25,6 +28,9 @@ class Mirinae < Formula
   end
 
   test do
-    assert_match "Mirinae", shell_output("#{prefix}/Mirinae.app/Contents/MacOS/Mirinae --version")
+    # 0.1.0 starts AppKit before answering --version, which aborts without a window server, so
+    # check the bundle instead of running it.
+    assert_match "<string>#{version}</string>", (prefix/"Mirinae.app/Contents/Info.plist").read
+    assert_predicate prefix/"Mirinae.app/Contents/MacOS/Mirinae", :executable?
   end
 end

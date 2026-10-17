@@ -5,7 +5,7 @@ Welcome to my Homebrew tap!
 Right now, this tap enables the installation of [Mirinae](https://github.com/agriyakhetarpal/mirinae), a Galaxy Buds app for macOS devices.
 
 ```sh
-brew install agriyakhetarpal/tap/mirinae          # builds on your Mac, no Gatekeeper prompt
+brew install --formula agriyakhetarpal/tap/mirinae  # builds on your Mac, no Gatekeeper prompt
 brew install --cask agriyakhetarpal/tap/mirinae   # prebuilt app from the GitHub release
 ```
 
@@ -19,6 +19,7 @@ The formula builds from the tagged source tarball. The cask downloads the releas
 ad-hoc signed and not notarised, so macOS asks for a one-time "Open Anyway" on first launch.
 
 Both checksums come from the `SHA256SUMS` file attached to each release.
+`Scripts/bump.sh <version>` fetches that file and updates the formula and cask.
 
 ---
 
